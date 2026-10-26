@@ -2,7 +2,6 @@
  Nome do Script:  aula08_document.sql
  Objetivo:        Migração do SQLite para a base de dados MySQL, criação de tabelas e inserção de dados.
  Autor:           Humberto Henrique Castro Rocha
- RGA:             202512722003
  Data:            2025-07-13
 */
 
