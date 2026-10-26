@@ -1,21 +1,13 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 
-@Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306, // porta padrão do MySQL 
-      username: 'root', // usuário do servidor MySQL
-      password: 'TInaveia123@', // senha do servidor MySQL
-      database: 'atividades_prog', // O banco de dados isolado
-      entities: [User],
-      synchronize: true, // Permite que o TypeORM crie a tabela automaticamente no MySQL
-    }),
-    UsersModule,
-  ],
-})
-export class AppModule {}
+export const config: TypeOrmModuleOptions = {
+  type: 'mysql',
+  host: process.env.DB_HOST ?? 'localhost',
+  port: Number(process.env.DB_PORT ?? 3306),
+  username: process.env.DB_USERNAME ?? 'root',
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE ?? 'atividades_prog',
+  entities: [User],
+  synchronize: true, // só para estudo local
+};
